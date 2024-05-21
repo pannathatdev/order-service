@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  order-service:
+    build: .
+    ports:
+      - "9002:9000"
+    environment:
+      - MONGO_URI=mongodb+srv://pipo:Aa123654@pipo.gqdqli4.mongodb.net/order
+
+    networks:
+      - app-network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
