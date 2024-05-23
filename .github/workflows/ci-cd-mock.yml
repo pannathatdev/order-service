@@ -38,13 +38,11 @@ jobs:
         working-directory: ./order-service
 
       - name: Load Mockup Data
-        run: node mockup-loader.js
+        run: node src/order/mockup-loader.js
         working-directory: ./order-service
 
       - name: Build the Docker image
-        run: |
-          docker build -t order .
-          docker tag order pannathatdev/order:latest
+        run: docker build -t order .
         working-directory: ./order-service
 
   deploy:
