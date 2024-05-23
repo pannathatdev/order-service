@@ -59,8 +59,11 @@ jobs:
           username: pannathatdev
           password: dckr_pat_RUMz0NKUUwMZzFEElvaufKdNQ3g
 
-      - name: Push Docker image
-        run: docker push pannathatdev/order:latest
+      - name: Build and push Docker image
+        run: |
+          docker build -t pannathatdev/order:latest .
+          docker push pannathatdev/order:latest
+        working-directory: ./order-service
 
       - name: Deploy to production
         env:
