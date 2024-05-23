@@ -1,6 +1,3 @@
-// order.service.spec.ts
-
-// Import สิ่งที่จำเป็น
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrderService } from './order.service';
 import { getModelToken } from '@nestjs/mongoose';
