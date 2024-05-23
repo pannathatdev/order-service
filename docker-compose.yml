@@ -4,7 +4,7 @@ services:
   order-service:
     build: .
     ports:
-      - "9002:9000"
+      - "9000:9000"
     environment:
       - MONGO_URI=mongodb+srv://pipo:Aa123654@pipo.gqdqli4.mongodb.net/order
 
@@ -25,7 +25,7 @@ services:
 
 networks:
   app-network:
-    driver: bridge
+    external: true
 
 volumes:
   mongodb_data:
