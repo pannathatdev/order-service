@@ -10,7 +10,7 @@ async function loadMockupData() {
         const products = response.data;
 
         // เรียกใช้ service ผ่านชื่อ container ที่กำหนดใน docker-compose.yml
-        await axios.post('http://order-service:9000/orders/load', products);
+        await axios.post('http://host.docker.internal:9000', products);
         console.log('Mockup data loaded successfully.');
     } catch (error) {
         console.error('Failed to load mockup data:', error.message);
