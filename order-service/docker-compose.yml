@@ -1,17 +1,16 @@
+version: '3'
 services:
   order-service:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "9000:9000"
     environment:
       - MONGO_URI=mongodb+srv://pipo:Aa123654@pipo.gqdqli4.mongodb.net/order
-
     networks:
       - app-network
-    depends_on:
-      - mongodb
     container_name: order-service
-
 
   mongodb:
     image: mongo:latest
@@ -25,9 +24,6 @@ services:
 
 volumes:
   mongodb_data:
-    external: false
 
 networks:
   app-network:
-    external: true
-
