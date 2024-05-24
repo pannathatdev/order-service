@@ -1,29 +1,20 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import axios from 'axios';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { OrderService } from './order.service';
+import { CreateOrderDto } from './create-order.dto';
 
 @Controller('orders')
 export class OrderController {
-  constructor() {}
+    constructor(private readonly orderService: OrderService) {}
 
-  @Get()
-  async findAllOrders(): Promise<any> {
-    try {
-      const response = await axios.get('http://product-service:8000/products');
-      return response.data;
-    } catch (error) {
-      console.error('Failed to fetch products:', error.message);
-      throw error;
+    @Post()
+    async create(@Body() createOrderDto: CreateOrderDto) {
+        return this.orderService.create(createOrderDto);
     }
-  }
 
-  @Post('load')
-  async loadProducts(@Body() products: any) {
-    try {
-      console.log('Received products:', products);
-      return { message: 'Products loaded successfully' };
-    } catch (error) {
-      console.error('Failed to process products:', error.message);
-      throw error;
+    @Get()
+    async findAll() {
+        return this.orderService.findAll();
     }
-  }
+
+    // เพิ่มเมธอดอื่น ๆ ตามต้องการ
 }
